@@ -1,35 +1,41 @@
 body, html{
     padding: 0;
     margin: 0;
-    background: gainsboro;
+    background: gainsboro url('./../images/bg.jpg')  no-repeat;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
 }
 
 .container{
-    width: 300px;
-    height: auto;
+    width: 100vw;
+    height: 100vh;
+
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 10px 8px 6px;;
+    padding: 1rem;
     box-sizing: border-box;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    border-radius: 20px;
-    background: #fff;
 }
 
 .resultScreen{
     text-align: center;
     width: 100%;
-    height: 90px;
-    padding: 5px;
-    margin-top: 10px;
+    height: 100px;
+    padding: 10px;
     border: 0.5px solid rgba(0, 0, 0, 0.2);
     position: relative;
-    border-radius: 10px 10px 0 0;
     box-sizing: border-box;
     background: #fff;
+    font-size: 140%;
 }
 
 #topScreen,
@@ -48,7 +54,6 @@ body, html{
 }
 
 
-
 .operatorScreen{
     position: absolute;
     left: 30px;
@@ -58,17 +63,22 @@ body, html{
 }
 
 
-.keys{
+.keys {
     width: 100%;
     margin: 40px auto;
     padding: 7px 0 0 7px;
+
+    display: grid;
+    grid-template-areas: "nine   eight           seven     clear"
+                         "six    five            four      plus"
+                         "three  two             one       minus"
+                         "zero   multiplication  division  equals"
+                         "dot    logo            logo      logo";
+    grid-gap: 0.8rem 0.8rem;
+
 }
 
-
-
 .key{
-    width: 60px;
-    height: 60px;
     font-size: 140%;
     font-weight: 400;
     text-align: center;
@@ -111,19 +121,86 @@ body, html{
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#E0E0E0, endColorstr=#BDBBBC);
 }
 
+
+.key:first-child{
+    grid-area: nine;
+}
+
+.key:nth-child(2){
+    grid-area: eight;
+}
+
+.key:nth-child(3){
+    grid-area: seven;
+}
+.key:nth-child(4){
+    grid-area: clear;
+}
+.key:nth-child(5){
+    grid-area: six;
+}
+.key:nth-child(6){
+    grid-area: five;
+}
+.key:nth-child(7){
+    grid-area: four;
+}
+.key:nth-child(8){
+    grid-area: plus;
+}
+.key:nth-child(9){
+    grid-area: three;
+}
+.key:nth-child(10){
+    grid-area: two;
+}
+.key:nth-child(11){
+    grid-area: one;
+}
+.key:nth-child(12){
+    grid-area: minus;
+}
+.key:nth-child(13){
+    grid-area: zero;
+}
+.key:nth-child(14){
+    grid-area: multiplication;
+}
+.key:nth-child(15){
+    grid-area: division;
+}
+.key:nth-child(16){
+    grid-area: equals;
+}
+.key:nth-child(17){
+    grid-area: dot;
+}
+
+
+
 .dot{
-    height: 40px;
-    line-height: 0;
+    height: 50px;
     line-height: 20px;
     font-size: 3rem;
 }
 
 #logo{
-    display: inline-block;
-    margin-top: 20px;
-    margin-left: 30px;
     background: url(../images/Casio-Logo-PNG-Clipart.png) no-repeat;
     background-size: contain;
-    width: 150px;
-    height: 40px;
+    grid-area: logo;
+}
+
+@media screen and (min-width: 400px){
+    .container {
+        max-width: 350px;
+    }
+}
+
+
+@media screen and (min-width: 576px){
+    .container {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        height: auto;
+    }
+
 }
