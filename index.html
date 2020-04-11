@@ -1,44 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Smart Calculator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/calculator.css">
-    
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Core Javascript Calculator" />
+	<meta name="keywords" content="Calculator, js Calculator, Javascript Calculator, calc, simple calculator" />
+	<title>Calculator</title>
+
+	<!--css-->
+	<link rel="stylesheet" href="css/calculator.css" />
 </head>
 <body>
+	
+	<div id="calculator">
+		<input type="text" readonly="readonly" name="screen" id="screen"/>
+		<section class="keypads">
+			<button class="key" onclick="constructExpression('')" id="clear">C</button>
+			<button class="key" onclick="constructExpression(' / ')">/</button>
+			<button class="key" onclick="constructExpression(' * ')">*</button>
+			<button class="key" onclick="constructExpression('7')">7</button>
+			<button class="key" onclick="constructExpression('8')">8</button>
+			<button class="key" onclick="constructExpression('9')">9</button>
+			<button class="key" onclick="constructExpression(' - ')">-</button>
+			<button class="key" onclick="constructExpression('4')">4</button>
+			<button class="key" onclick="constructExpression('5')">5</button>
+			<button class="key" onclick="constructExpression('6')">6</button>
+			<button class="key" onclick="constructExpression(' + ')">+</button>
+			<button class="key" onclick="constructExpression('1')">1</button>
+			<button class="key" onclick="constructExpression('2')">2</button>
+			<button class="key" onclick="constructExpression('3')">3</button>
+			<button class="key"  id="equal">=</button>
+			<button class="key" onclick="constructExpression('00')">00</button>
+			<button class="key" onclick="constructExpression('0')">0</button>
+			<button class="key" onclick="constructExpression('.')">.</button>
+		</section>
+	</div>
 
-    <div class="container">
-        <section class="resultScreen">
-            <span id="topScreen"></span>
-            <span id="bottomScreen"></span>
-            <span class="operatorScreen"></span>
-        </section>
+	<script>
+		const screen = document.querySelector("#screen");
+		document.querySelector("#equal").addEventListener('click', evaluate);
 
-        <section class="keys">
-            <span class="key">9</span>
-            <span class="key">8</span>
-            <span class="key">7</span>
-            <span class="key">C</span>
-            <span class="key">6</span>
-            <span class="key">5</span>
-            <span class="key">4</span>
-            <span class="key">+</span>
-            <span class="key">3</span>
-            <span class="key">2</span>
-            <span class="key">1</span>
-            <span class="key">-</span>
-            <span class="key">0</span>
-            <span class="key">*</span>            
-            <span class="key">/</span>            
-            <span class="key">=</span>
-            <span class="key dot">.</span>
-            <div id="logo"></div>
-        </section>
-    </div>
 
-    <script src="js/calculator.js"></script>
+		let error = false;
+		let evaluationMade = false;
+
+		/**
+		 *
+		 * Constructs maths expression
+		 *
+		 */
+		function constructExpression(value){
+			if(value && !error){
+				if(evaluationMade){
+					screen.value = value;
+				} else {
+					screen.value += value;
+				}
+
+				evaluationMade = false;
+			} else {
+				screen.value = value;
+			}
+
+			error = false;
+		}
+
+		/**
+		 *
+		 * Evaluates input expression
+		 *
+		 */
+		
+		function evaluate(){
+			try {
+				screen.value = eval(screen.value);
+				error = false;
+				evaluationMade = true;
+			} catch(err){
+				screen.value = 'Syntax Error';
+				error = true;
+			} 
+		}
+
+	</script>
 </body>
 </html>
