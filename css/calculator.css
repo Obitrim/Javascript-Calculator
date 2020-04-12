@@ -67,6 +67,11 @@ body * {
 	color: #000000;
 }
 
+#screen:focus, 
+.key:focus {
+	border: none;
+}
+
 
 @media (min-width: 576px){
 	#calculator {

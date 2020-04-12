@@ -37,6 +37,7 @@
 	</div>
 
 	<script>
+		
 		const screen = document.querySelector("#screen");
 		document.querySelector("#equal").addEventListener('click', evaluate);
 
@@ -69,17 +70,45 @@
 		 *
 		 * Evaluates input expression
 		 *
+		 * @returns {undefined}
 		 */
-		
 		function evaluate(){
 			try {
-				screen.value = eval(screen.value);
+				let formattedExpression = toValidMathsExpression(screen.value);
+
+				screen.value = eval(formattedExpression);
 				error = false;
 				evaluationMade = true;
 			} catch(err){
 				screen.value = 'Syntax Error';
 				error = true;
 			} 
+		}
+
+
+		/**
+		 *
+		 * formats string expression into valid maths expression in a particular
+		 * radix
+		 * 
+		 * @param {String} str invalid string to be formatted
+		 * @patam {Number} base number base to format string
+		 *
+		 * @returns {String} valid maths expression
+		 */
+		function toValidMathsExpression(str, base = 0){
+			if(base < 2 && base > 36){
+				return null;
+			}
+
+			if(str){
+				return str
+						.split(" ")
+						.map(value => !Number(value) ? value : parseFloat(value, base))
+						.join(" ");
+			}else {
+				console.error("Function required at least 1 argument, got 0");
+			}
 		}
 
 	</script>
