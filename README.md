@@ -10,4 +10,4 @@ Simple Javascript Calculator for simple mathematical calculations involving
 [-] Substraction
 [-] Clear Button
 
-![preview](https://github.com/Obitrim/Js-Calculator/blob/main/docs/calculator.PNG)
+![preview](https://github.com/Obitrim/Js-Calculator/blob/master/docs/calculator.PNG)
