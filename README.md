@@ -4,11 +4,11 @@ Simple Javascript Calculator for simple mathematical calculations involving
 
 ## Features
 
-[-] Addition
-[-] Multiplication
-[-] Division
-[-] Substraction
-[-] Clear Button
+- [x] Addition
+- [x] Multiplication
+- [x] Division
+- [x] Substraction
+- [x] Clear Button
 
 ## Technologies
 
